@@ -273,6 +273,7 @@ let webSearchQuery = "";
 let labSearchQuery = "";
 let webCategoryFilter = "all";
 let labCategoryFilter = "all";
+let navScrollY = 0;
 
 function renderWebProjects() {
   const webGrid = document.getElementById("web-projects-grid");
@@ -570,12 +571,24 @@ function setNavBackdrop(open) {
   backdrop.setAttribute("aria-hidden", open ? "false" : "true");
 }
 
+function lockBodyScroll(lock) {
+  if (lock) {
+    navScrollY = window.scrollY;
+    document.body.style.top = `-${navScrollY}px`;
+    document.body.classList.add("nav-open");
+  } else {
+    document.body.classList.remove("nav-open");
+    document.body.style.top = "";
+    window.scrollTo(0, navScrollY);
+  }
+}
+
 function closeMobileNav() {
   hamburgerBtn.classList.remove("open");
   navMenu.classList.remove("open");
-  document.body.classList.remove("nav-open");
   hamburgerBtn.setAttribute("aria-expanded", "false");
   setNavBackdrop(false);
+  lockBodyScroll(false);
 }
 
 function setupEventListeners() {
@@ -585,9 +598,9 @@ function setupEventListeners() {
     const willOpen = !navMenu.classList.contains("open");
     hamburgerBtn.classList.toggle("open", willOpen);
     navMenu.classList.toggle("open", willOpen);
-    document.body.classList.toggle("nav-open", willOpen);
     hamburgerBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
     setNavBackdrop(willOpen);
+    lockBodyScroll(willOpen);
   });
 
   const navBackdrop = document.getElementById("nav-backdrop");
