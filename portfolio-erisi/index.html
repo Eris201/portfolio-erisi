@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Erisi | Student Developer & Creative Tech Designer</title>
   
   <!-- SEO Tags -->
@@ -10,7 +10,14 @@
   <meta name="keywords" content="Erisi, Developer Portfolio, Lipjan, HTML, CSS, JS, Laravel, Windmill project, Admin CRUD, local auth">
   <meta name="author" content="Erisi">
   <meta name="theme-color" content="#09090b">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Erisi | Student Developer Portfolio">
+  <meta property="og:description" content="Web projects, engineering lab, and hardware builds by Erisi from Lipjan.">
+  <meta property="og:image" content="favicon.svg">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="favicon.svg">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +28,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <a href="#home" class="skip-link">Skip to content</a>
+  <div id="nav-backdrop" class="nav-backdrop" aria-hidden="true"></div>
 
   <!-- Background Glowing Circles -->
   <div class="glow-orb orb-1"></div>
@@ -41,6 +51,7 @@
       <nav class="nav-menu" id="nav-menu">
         <a href="#home" class="nav-link active">Home</a>
         <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
         <a href="#projects" class="nav-link">Web Work</a>
         <a href="#lab" class="nav-link">Tech Lab</a>
         <a href="#goals" class="nav-link">Roadmap</a>
@@ -56,12 +67,15 @@
           <button class="theme-dot blue" data-theme="blue" title="Electric Blue Accent"></button>
           <button class="theme-dot pink" data-theme="pink" title="Hot Pink Accent"></button>
           <button class="theme-dot orange" data-theme="orange" title="Sunset Orange Accent"></button>
+          <button type="button" class="theme-mode-btn" id="theme-mode-btn" title="Toggle light / dark mode" aria-label="Toggle light or dark mode">
+            <i data-lucide="sun"></i>
+          </button>
         </div>
 
         <!-- Auth trigger -->
         <button id="auth-trigger-btn" class="btn btn-secondary btn-icon">
           <i data-lucide="user-check"></i>
-          <span>Login / Signup</span>
+          <span class="btn-label">Login</span>
         </button>
 
         <!-- User profile panel (hidden initially) -->
@@ -87,9 +101,15 @@
   <section id="home" class="section hero-sec">
     <div class="container hero-grid">
       <div class="hero-info">
-        <div class="tech-badge">
-          <span class="tech-pulse"></span>
-          Bridging Hardware & Full-Stack Software
+        <div class="hero-badges-row">
+          <div class="tech-badge">
+            <span class="tech-pulse"></span>
+            Bridging Hardware & Full-Stack Software
+          </div>
+          <div class="status-badge">
+            <i data-lucide="graduation-cap"></i>
+            Student project · Lipjan
+          </div>
         </div>
         
         <h1 class="hero-title">
@@ -119,10 +139,10 @@
         </div>
 
         <div class="hero-socials">
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="social-circle" aria-label="GitHub profile" id="github-link">
+          <a href="https://github.com/Eris201/portfolio-erisi" target="_blank" rel="noopener noreferrer" class="social-circle" aria-label="GitHub repository" id="github-link">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
-          <a href="mailto:erisi@example.com" class="social-circle" aria-label="Send email" id="email-link"><i data-lucide="mail"></i></a>
+          <a href="mailto:eris.thaqi10@gmail.com" class="social-circle" aria-label="Send email" id="email-link"><i data-lucide="mail"></i></a>
         </div>
       </div>
 
@@ -444,7 +464,7 @@
               <div class="details-icon"><i data-lucide="mail"></i></div>
               <div>
                 <h4>Email</h4>
-                <a href="mailto:erisi@example.com">erisi@example.com</a>
+                <a href="mailto:eris.thaqi10@gmail.com">eris.thaqi10@gmail.com</a>
               </div>
             </div>
             <div class="details-item">
@@ -454,11 +474,20 @@
                 <p>Lipjan, Europe</p>
               </div>
             </div>
+            <div class="details-item">
+              <div class="details-icon"><i data-lucide="github"></i></div>
+              <div>
+                <h4>GitHub</h4>
+                <a href="https://github.com/Eris201/portfolio-erisi" target="_blank" rel="noopener noreferrer">Eris201/portfolio-erisi</a>
+              </div>
+            </div>
           </div>
+          <p class="search-hint"><kbd>/</kbd> focus project search</p>
         </div>
 
         <div class="contact-form-col glass-card">
-          <form id="contact-form" class="contact-form">
+          <form id="contact-form" class="contact-form" novalidate>
+            <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-row-2">
               <div class="floating-input-group">
                 <input type="text" id="contact-name" placeholder=" " required>
@@ -500,8 +529,11 @@
       <div class="footer-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
+        <a href="#skills">Skills</a>
         <a href="#projects">Web Work</a>
         <a href="#lab">Tech Lab</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/Eris201/portfolio-erisi" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
   </footer>
@@ -714,6 +746,7 @@
     <i data-lucide="arrow-up"></i>
   </button>
 
+  <script src="site-config.js"></script>
   <script src="https://unpkg.com/lucide@0.460.0"></script>
   <script src="app.js"></script>
 </body>

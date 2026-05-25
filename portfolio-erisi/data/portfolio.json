@@ -6,7 +6,7 @@
     "category": "Portal",
     "image": "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=600&q=80",
     "tags": ["HTML5", "CSS3", "JavaScript", "Role Auth", "Event Dashboard"],
-    "liveUrl": "https://github.com",
+    "liveUrl": "https://github.com/Eris201",
     "description": "A complete multi-role school interface linking Student schedules, Teacher grade rosters, and Admin portals. Handles user authorization checks and custom school calendar events."
   },
   {
@@ -16,7 +16,7 @@
     "category": "Catalog",
     "image": "https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=600&q=80",
     "tags": ["JavaScript", "CSS Grid", "Product Catalog", "Stock Tracker"],
-    "liveUrl": "https://github.com",
+    "liveUrl": "https://github.com/Eris201",
     "description": "Clean, responsive product showcase grid tracking item details, flavor profiles, and active stock metrics. Integrated filters make catalogue searches seamless."
   },
   {
@@ -26,7 +26,7 @@
     "category": "Clean Power",
     "image": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80",
     "tags": ["Hardware Design", "Wiring System", "Voltage Output"],
-    "liveUrl": "https://github.com",
+    "liveUrl": "https://github.com/Eris201",
     "description": "A physical windmill construction designed to generate electrical power. Project logs track alternator wiring layouts, battery charging configurations, and structural assemblies."
   },
   {
@@ -36,7 +36,7 @@
     "category": "Hardware",
     "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=600&q=80",
     "tags": ["Battery Cells", "Power Converters", "Grid Circuit"],
-    "liveUrl": "https://github.com",
+    "liveUrl": "https://github.com/Eris201",
     "description": "Integrated bank of high-capacity cells wired for optimal storage load balancing. Built to manage household power backup demands and safety fuse distributions."
   },
   {

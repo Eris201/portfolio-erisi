@@ -6,8 +6,8 @@ const DATA_GUESTBOOK_URL = "data/guestbook.json";
 
 /* Inlined fallbacks if JSON fetch fails (e.g. opened as file://) */
 const FALLBACK_PORTFOLIO = [
-  { id: "w1", section: "web", title: "Gjimnazi Ulpiana School Portal", category: "Portal", image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=600&q=80", tags: ["HTML5", "CSS3", "JavaScript"], liveUrl: "https://github.com", description: "Multi-role school interface with schedules, grades, and admin tools." },
-  { id: "w2", section: "web", title: "Family Coffee Business Platform", category: "Catalog", image: "https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=600&q=80", tags: ["JavaScript", "CSS Grid"], liveUrl: "https://github.com", description: "Product catalog with stock tracking and filters." },
+  { id: "w1", section: "web", title: "Gjimnazi Ulpiana School Portal", category: "Portal", image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=600&q=80", tags: ["HTML5", "CSS3", "JavaScript"], liveUrl: "https://github.com/Eris201", description: "Multi-role school interface with schedules, grades, and admin tools." },
+  { id: "w2", section: "web", title: "Family Coffee Business Platform", category: "Catalog", image: "https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=600&q=80", tags: ["JavaScript", "CSS Grid"], liveUrl: "https://github.com/Eris201", description: "Product catalog with stock tracking and filters." },
   { id: "l1", section: "lab", title: "Windmill Electricity Generator", category: "Clean Power", image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80", tags: ["Hardware Design", "Wiring"], liveUrl: "", description: "Windmill build with alternator wiring and battery charging." },
   { id: "l2", section: "lab", title: "Battery Storage System Grid", category: "Hardware", image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=600&q=80", tags: ["Battery Cells", "Grid Circuit"], liveUrl: "", description: "Cell bank for storage load balancing and backup power." },
   { id: "l3", section: "lab", title: "Multimedia Creative Showcase", category: "Multimedia", image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80", tags: ["Video Editing", "UI Designs"], liveUrl: "https://youtube.com", description: "Video edits, presentations, and UI concept work." }
@@ -132,6 +132,11 @@ async function init() {
   initScrollTopButton();
   initTimelineAccordion();
   initWindmillSimulator();
+  initSiteConfig();
+  initLightMode();
+  initSkillBarsAnimation();
+  initKeyboardShortcuts();
+  initLogoEasterEgg();
 
   refreshIcons();
 }
@@ -558,11 +563,19 @@ function showToast(message, type = "success") {
 /* ==========================================================================
    DOM Event Listeners Setup
    ========================================================================== */
+function setNavBackdrop(open) {
+  const backdrop = document.getElementById("nav-backdrop");
+  if (!backdrop) return;
+  backdrop.classList.toggle("visible", open);
+  backdrop.setAttribute("aria-hidden", open ? "false" : "true");
+}
+
 function closeMobileNav() {
   hamburgerBtn.classList.remove("open");
   navMenu.classList.remove("open");
   document.body.classList.remove("nav-open");
   hamburgerBtn.setAttribute("aria-expanded", "false");
+  setNavBackdrop(false);
 }
 
 function setupEventListeners() {
@@ -574,7 +587,13 @@ function setupEventListeners() {
     navMenu.classList.toggle("open", willOpen);
     document.body.classList.toggle("nav-open", willOpen);
     hamburgerBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    setNavBackdrop(willOpen);
   });
+
+  const navBackdrop = document.getElementById("nav-backdrop");
+  if (navBackdrop) {
+    navBackdrop.addEventListener("click", closeMobileNav);
+  }
 
   document.addEventListener("click", (e) => {
     if (navMenu.classList.contains("open") && !navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
@@ -782,22 +801,7 @@ function setupEventListeners() {
     refreshProjectFilterBars();
   });
 
-  // Contact Form Simulated Submission
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const submitBtn = contactForm.querySelector(".btn-submit-contact");
-    const originalContent = submitBtn.innerHTML;
-
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = `<span>Sending Message...</span> <i class="spinner"></i>`;
-
-    setTimeout(() => {
-      showToast("Thank you! Message sent successfully. Erisi will reach out shortly.", "success");
-      contactForm.reset();
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalContent;
-    }, 1500);
-  });
+  contactForm.addEventListener("submit", handleContactSubmit);
 
   // Close modals on overlay backdrop click
   window.addEventListener("click", (e) => {
@@ -1250,6 +1254,167 @@ window.openWindmillSimulator = function() {
     }
   }
 };
+
+/* ==========================================================================
+   Site config, contact API, extras
+   ========================================================================== */
+function initSiteConfig() {
+  const cfg = typeof SITE_CONFIG !== "undefined" ? SITE_CONFIG : {};
+  const email = cfg.contactEmail || "eris.thaqi10@gmail.com";
+  const repo = cfg.githubRepo || "https://github.com/Eris201/portfolio-erisi";
+
+  const emailLink = document.getElementById("email-link");
+  if (emailLink) emailLink.href = `mailto:${email}`;
+
+  const mailtoText = document.querySelector(".contact-details-col a[href^='mailto:']");
+  if (mailtoText) {
+    mailtoText.href = `mailto:${email}`;
+    mailtoText.textContent = email;
+  }
+
+  const ghLink = document.getElementById("github-link");
+  if (ghLink && cfg.githubRepo) ghLink.href = repo;
+}
+
+async function handleContactSubmit(e) {
+  e.preventDefault();
+  const submitBtn = contactForm.querySelector(".btn-submit-contact");
+  const originalContent = submitBtn.innerHTML;
+  const honeypot = contactForm.querySelector(".hp-field");
+  if (honeypot && honeypot.checked) return;
+
+  const name = document.getElementById("contact-name").value.trim();
+  const email = document.getElementById("contact-email").value.trim();
+  const subject = document.getElementById("contact-subject").value.trim();
+  const message = document.getElementById("contact-msg").value.trim();
+  const accessKey = typeof SITE_CONFIG !== "undefined" ? SITE_CONFIG.web3formsAccessKey : "";
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `<span>Sending...</span> <i class="spinner"></i>`;
+
+  try {
+    if (accessKey) {
+      const body = new FormData();
+      body.append("access_key", accessKey);
+      body.append("name", name);
+      body.append("email", email);
+      body.append("subject", subject);
+      body.append("message", message);
+      body.append("from_name", "Portfolio Contact");
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Send failed");
+      }
+      showToast("Message sent! I will reply to your email soon.", "success");
+      contactForm.reset();
+    } else {
+      await new Promise(r => setTimeout(r, 1200));
+      showToast("Thanks! (Demo mode — add Web3Forms key in site-config.js for real email.)", "info");
+      contactForm.reset();
+    }
+  } catch (err) {
+    showToast("Could not send message. Try email instead.", "error");
+    console.error(err);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalContent;
+    refreshIcons();
+  }
+}
+
+function initLightMode() {
+  const btn = document.getElementById("theme-mode-btn");
+  if (!btn) return;
+
+  if (localStorage.getItem("erisi_light_mode") === "1") {
+    document.body.classList.add("theme-light");
+  }
+
+  btn.addEventListener("click", () => {
+    document.body.classList.toggle("theme-light");
+    localStorage.setItem("erisi_light_mode", document.body.classList.contains("theme-light") ? "1" : "0");
+    updateLightModeIcon();
+  });
+  updateLightModeIcon();
+}
+
+function updateLightModeIcon() {
+  const btn = document.getElementById("theme-mode-btn");
+  if (!btn) return;
+  const icon = btn.querySelector("i");
+  if (!icon) return;
+  const isLight = document.body.classList.contains("theme-light");
+  icon.setAttribute("data-lucide", isLight ? "moon" : "sun");
+  if (window.lucide && typeof window.lucide.createIcons === "function") {
+    window.lucide.createIcons();
+  }
+}
+
+function initSkillBarsAnimation() {
+  const levels = document.querySelectorAll(".skill-level");
+  if (!levels.length || !("IntersectionObserver" in window)) {
+    levels.forEach(el => el.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+
+  levels.forEach(el => observer.observe(el));
+}
+
+function initKeyboardShortcuts() {
+  document.addEventListener("keydown", e => {
+    if (e.key === "/" && !isTypingInField()) {
+      e.preventDefault();
+      const webSearch = document.getElementById("web-search-input");
+      const projects = document.getElementById("projects");
+      if (projects) projects.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (webSearch) {
+        setTimeout(() => webSearch.focus(), 400);
+      }
+    }
+  });
+}
+
+function isTypingInField() {
+  const el = document.activeElement;
+  if (!el) return false;
+  const tag = el.tagName;
+  return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || el.isContentEditable;
+}
+
+function initLogoEasterEgg() {
+  const logo = document.querySelector(".logo");
+  if (!logo) return;
+  let clicks = 0;
+  let timer;
+
+  logo.addEventListener("click", e => {
+    if (e.metaKey || e.ctrlKey) return;
+    clicks += 1;
+    clearTimeout(timer);
+    timer = setTimeout(() => { clicks = 0; }, 1200);
+    if (clicks >= 5) {
+      clicks = 0;
+      showToast("Built with curiosity — hardware meets code.", "success");
+    }
+  });
+}
 
 function refreshIcons() {
   if (window.lucide && typeof window.lucide.createIcons === "function") {
