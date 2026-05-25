@@ -1,0 +1,16 @@
+[
+  {
+    "id": "c1",
+    "author": "Arben L.",
+    "role": "user",
+    "message": "The windmill project looks impressive! Bridging battery hardware storage and web interfaces is a fantastic direction.",
+    "date": "2026-05-20"
+  },
+  {
+    "id": "c2",
+    "author": "admin",
+    "role": "admin",
+    "message": "Welcome to my portfolio guestbook! You can register a local account here to leave a comment or feedback on my work.",
+    "date": "2026-05-25"
+  }
+]

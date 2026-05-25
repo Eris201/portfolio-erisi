@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erisi | Student Developer & Creative Tech Designer</title>
+  
+  <!-- SEO Tags -->
+  <meta name="description" content="Professional portfolio of Erisi, showcasing full-stack software, school portals, stock platforms, and hardware engineering concepts based in Lipjan.">
+  <meta name="keywords" content="Erisi, Developer Portfolio, Lipjan, HTML, CSS, JS, Laravel, Windmill project, Admin CRUD, local auth">
+  <meta name="author" content="Erisi">
+  <meta name="theme-color" content="#09090b">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Glowing Circles -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <!-- Toast Notification Drawer -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Sticky Glass Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#home" class="logo">
+        ERISI<span class="logo-accent">.</span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Web Work</a>
+        <a href="#lab" class="nav-link">Tech Lab</a>
+        <a href="#goals" class="nav-link">Roadmap</a>
+        <a href="#guestbook" class="nav-link">Guestbook</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Auth Action buttons / Profile Status -->
+      <div class="header-actions">
+        <!-- Theme Accent Switcher -->
+        <div class="theme-switcher" id="theme-switcher">
+          <button class="theme-dot emerald active" data-theme="emerald" title="Emerald Green Accent"></button>
+          <button class="theme-dot blue" data-theme="blue" title="Electric Blue Accent"></button>
+          <button class="theme-dot pink" data-theme="pink" title="Hot Pink Accent"></button>
+          <button class="theme-dot orange" data-theme="orange" title="Sunset Orange Accent"></button>
+        </div>
+
+        <!-- Auth trigger -->
+        <button id="auth-trigger-btn" class="btn btn-secondary btn-icon">
+          <i data-lucide="user-check"></i>
+          <span>Login / Signup</span>
+        </button>
+
+        <!-- User profile panel (hidden initially) -->
+        <div id="user-profile-badge" class="profile-badge hidden">
+          <span class="profile-avatar" id="profile-avatar-char">U</span>
+          <span class="profile-name" id="profile-username-display">User</span>
+          <button id="auth-logout-btn" class="btn-logout" title="Sign Out">
+            <i data-lucide="log-out"></i>
+          </button>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="section hero-sec">
+    <div class="container hero-grid">
+      <div class="hero-info">
+        <div class="tech-badge">
+          <span class="tech-pulse"></span>
+          Bridging Hardware & Full-Stack Software
+        </div>
+        
+        <h1 class="hero-title">
+          Engineering <span class="gradient-blue">Solutions</span>, Coding Futures
+        </h1>
+        
+        <p class="hero-desc">
+          I'm Erisi, a student developer and tech designer from Lipjan. I am a fast learner focused on combining physical engineering concepts with web architectures.
+        </p>
+
+        <!-- Typed Animation -->
+        <div class="typing-box">
+          <span class="type-lead">I build </span>
+          <span id="typed-text" class="typed-content">Web Portals</span>
+          <span class="typed-cursor">|</span>
+        </div>
+
+        <div class="hero-actions-row">
+          <a href="#projects" class="btn btn-primary">
+            <span>View Web Apps</span>
+            <i data-lucide="code"></i>
+          </a>
+          <a href="#lab" class="btn btn-outline">
+            <span>Explore Engineering Lab</span>
+            <i data-lucide="cpu"></i>
+          </a>
+        </div>
+
+        <div class="hero-socials">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="social-circle" aria-label="GitHub profile" id="github-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="mailto:erisi@example.com" class="social-circle" aria-label="Send email" id="email-link"><i data-lucide="mail"></i></a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="glass-card hardware-display-card floating">
+          <div class="card-topbar">
+            <div class="topbar-buttons">
+              <span class="btn-dot dot-red"></span>
+              <span class="btn-dot dot-yellow"></span>
+              <span class="btn-dot dot-green"></span>
+            </div>
+            <div class="topbar-filename">lipjan_dev_env.sh</div>
+          </div>
+          <div class="card-display-body">
+            <pre><code><span class="hl-comment"># Developer Bio & Background Config</span>
+<span class="hl-keyword">export</span> STUDENT_NAME=<span class="hl-string">"Erisi"</span>
+<span class="hl-keyword">export</span> LOCATION=<span class="hl-string">"Lipjan"</span>
+<span class="hl-keyword">export</span> SPECIALTIES=(<span class="hl-string">"Laravel"</span> <span class="hl-string">"React"</span> <span class="hl-string">"UI/UX"</span>)
+
+<span class="hl-keyword">function</span> runBuild() {
+  echo <span class="hl-string">"Connecting hardware grid and software..."</span>
+  sys_init --windmill --battery-storage
+  web_deploy --auth-systems --dashboards
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Experience Badge -->
+        <div class="badge-float glass-card">
+          <div class="badge-value">Fast</div>
+          <div class="badge-label">Learner &<br>Builder</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section about-sec">
+    <div class="container">
+      <div class="section-tag-container">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-heading">My Tech Background</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-portrait-wrapper">
+          <div class="portrait-background-glow"></div>
+          <div class="portrait-card glass-card">
+            <div class="portrait-avatar">
+              <svg viewBox="0 0 100 100" class="portrait-svg">
+                <defs>
+                  <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0ea5e9" />
+                    <stop offset="50%" stop-color="#3b82f6" />
+                    <stop offset="100%" stop-color="#10b981" />
+                  </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="46" fill="none" stroke="url(#blue-grad)" stroke-width="3" stroke-dasharray="6,4"/>
+                <circle cx="50" cy="50" r="38" fill="url(#blue-grad)" opacity="0.9"/>
+                <!-- User minimal portrait elements -->
+                <circle cx="50" cy="40" r="12" fill="#09090b"/>
+                <path d="M26 73 C 26 56, 74 56, 74 73 C 74 80, 26 80, 26 73 Z" fill="#09090b"/>
+              </svg>
+            </div>
+            <h3 class="portrait-name">Erisi</h3>
+            <p class="portrait-title">Developer & Tech Designer</p>
+            <div class="portrait-meta">
+              <i data-lucide="map-pin"></i>
+              <span>Lipjan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-details">
+          <h3 class="details-heading">Bridging physical engineering and digital development</h3>
+          <p id="about-bio-text" class="details-text">
+            I am a student developer driven by an insatiable curiosity for how things work. Whether it is wiring windmill circuits to generate electrical power, configuring custom battery grids, or programming full-stack web applications, I enjoy building projects from the ground up. I bridge the gap between hardware engineering and web design.
+          </p>
+
+          <div class="about-stats">
+            <div class="stat-box glass-card">
+              <div class="stat-icon-wrap"><i data-lucide="check-square"></i></div>
+              <div class="stat-number" id="stat-projects-count">10+</div>
+              <div class="stat-label">Total Projects</div>
+            </div>
+            <div class="stat-box glass-card">
+              <div class="stat-icon-wrap"><i data-lucide="layers"></i></div>
+              <div class="stat-number" id="stat-stack-count">5+</div>
+              <div class="stat-label">Active Languages</div>
+            </div>
+            <div class="stat-box glass-card">
+              <div class="stat-icon-wrap"><i data-lucide="gauge"></i></div>
+              <div class="stat-number" id="stat-satisfaction">100%</div>
+              <div class="stat-label">Dedication Rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section skills-sec">
+    <div class="container">
+      <div class="section-tag-container">
+        <span class="section-tag">Skills</span>
+        <h2 class="section-heading">What I Work With</h2>
+      </div>
+      <div class="skills-levels-grid">
+        <div class="skill-level glass-card">
+          <div class="skill-level-head"><span>HTML &amp; CSS</span><span class="skill-pct">Strong</span></div>
+          <div class="skill-level-track"><span class="skill-level-fill" style="--level: 88%"></span></div>
+        </div>
+        <div class="skill-level glass-card">
+          <div class="skill-level-head"><span>JavaScript</span><span class="skill-pct">Strong</span></div>
+          <div class="skill-level-track"><span class="skill-level-fill" style="--level: 82%"></span></div>
+        </div>
+        <div class="skill-level glass-card">
+          <div class="skill-level-head"><span>Laravel</span><span class="skill-pct">Learning</span></div>
+          <div class="skill-level-track"><span class="skill-level-fill" style="--level: 55%"></span></div>
+        </div>
+        <div class="skill-level glass-card">
+          <div class="skill-level-head"><span>Hardware &amp; circuits</span><span class="skill-pct">Building</span></div>
+          <div class="skill-level-track"><span class="skill-level-fill" style="--level: 70%"></span></div>
+        </div>
+        <div class="skill-level glass-card">
+          <div class="skill-level-head"><span>React</span><span class="skill-pct">Next up</span></div>
+          <div class="skill-level-track"><span class="skill-level-fill" style="--level: 35%"></span></div>
+        </div>
+        <div class="skill-level glass-card">
+          <div class="skill-level-head"><span>UI / UX design</span><span class="skill-pct">Growing</span></div>
+          <div class="skill-level-track"><span class="skill-level-fill" style="--level: 65%"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Projects Hub -->
+  <section id="projects" class="section projects-sec">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="section-tag">Software Development</span>
+          <h2 class="section-heading">Web Projects Hub</h2>
+        </div>
+        <div class="search-and-actions">
+          <div class="search-box-wrapper">
+            <i data-lucide="search"></i>
+            <input type="text" id="web-search-input" placeholder="Search web projects...">
+          </div>
+          <button id="add-web-project-btn" class="btn btn-primary btn-icon hidden">
+            <i data-lucide="plus-circle"></i>
+            <span>Add Web Project</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tech stack pills -->
+      <div class="skills-bar">
+        <span class="skill-pill">HTML5 & CSS3</span>
+        <span class="skill-pill">JavaScript (ES6+)</span>
+        <span class="skill-pill">Laravel (Basic)</span>
+        <span class="skill-pill">Authentication Systems</span>
+        <span class="skill-pill">Role Dashboards</span>
+      </div>
+
+      <div class="filter-bar" id="web-filter-bar" data-section="web" role="group" aria-label="Filter web projects"></div>
+
+      <!-- Projects Grid -->
+      <div class="cards-grid" id="web-projects-grid">
+        <!-- Dyn. Render -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering & Lab Section -->
+  <section id="lab" class="section lab-sec">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="section-tag">Engineering & Multimedia</span>
+          <h2 class="section-heading">Engineering & Creative Lab</h2>
+        </div>
+        <div class="search-and-actions">
+          <div class="search-box-wrapper">
+            <i data-lucide="search"></i>
+            <input type="text" id="lab-search-input" placeholder="Search lab projects...">
+          </div>
+          <button id="add-lab-project-btn" class="btn btn-outline btn-icon hidden">
+            <i data-lucide="plus"></i>
+            <span>Add Lab Showcase</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Description of hardware lab -->
+      <p class="section-desc">
+        A look into my physical engineering builds and digital design projects. I love combining mechanical design, renewable energy concepts, and clean multimedia editing.
+      </p>
+
+      <div class="filter-bar" id="lab-filter-bar" data-section="lab" role="group" aria-label="Filter lab projects"></div>
+
+      <!-- Lab Grid -->
+      <div class="cards-grid" id="lab-projects-grid">
+        <!-- Dyn. Render -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Goals Timeline/Grid -->
+  <section id="goals" class="section goals-sec">
+    <div class="container">
+      <div class="section-tag-container">
+        <span class="section-tag">Timeline & Roadmap</span>
+        <h2 class="section-heading">Goals & Skills Progression</h2>
+      </div>
+
+      <div class="goals-timeline">
+        <!-- Goal item 1 -->
+        <div class="timeline-item glass-card">
+          <div class="timeline-icon"><i data-lucide="terminal"></i></div>
+          <div class="timeline-date">Current Focus</div>
+          <h3 class="timeline-title">Laravel Full-Stack Systems</h3>
+          <p class="timeline-desc">Developing secure backend application setups, authentication processes, and role-based structures using Laravel and Eloquent databases.</p>
+        </div>
+
+        <!-- Goal item 2 -->
+        <div class="timeline-item glass-card">
+          <div class="timeline-icon"><i data-lucide="code-2"></i></div>
+          <div class="timeline-date">Upcoming Target</div>
+          <h3 class="timeline-title">React UI Libraries</h3>
+          <p class="timeline-desc">Mastering advanced component structures, state managers, and visual hook integrations to design premium frontends.</p>
+        </div>
+
+        <!-- Goal item 3 -->
+        <div class="timeline-item glass-card">
+          <div class="timeline-icon"><i data-lucide="database"></i></div>
+          <div class="timeline-date">Future learning</div>
+          <h3 class="timeline-title">RESTful APIs & Advanced Databases</h3>
+          <p class="timeline-desc">Building external microservices, structured GraphQL queries, and optimizing PostgreSQL database performance.</p>
+        </div>
+
+        <!-- Goal item 4 -->
+        <div class="timeline-item glass-card">
+          <div class="timeline-icon"><i data-lucide="brain-circuit"></i></div>
+          <div class="timeline-date">Long Term Goal</div>
+          <h3 class="timeline-title">AI & Smart Hardware Integrations</h3>
+          <p class="timeline-desc">Connecting mechanical systems, physical microcontrollers (e.g. Arduino grids), and LLM API models to automate dashboard controllers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guestbook Message Board -->
+  <section id="guestbook" class="section guestbook-sec">
+    <div class="container">
+      <div class="section-tag-container">
+        <span class="section-tag">Interactive Board</span>
+        <h2 class="section-heading">Public Guestbook</h2>
+      </div>
+
+      <div class="guestbook-grid">
+        <!-- Message box input form -->
+        <div class="guestbook-form-wrap glass-card">
+          <h3>Leave a Message</h3>
+          <p class="form-instructions">Demo feature: sign up or log in locally in your browser to post a message (saved on this device only).</p>
+
+          <!-- Input form shown if logged in -->
+          <form id="guestbook-form" class="guestbook-form hidden">
+            <div class="floating-input-group">
+              <textarea id="guestbook-message" rows="4" placeholder=" " required></textarea>
+              <label for="guestbook-message">Write your comment here...</label>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <span>Post Message</span>
+              <i data-lucide="message-square"></i>
+            </button>
+          </form>
+
+          <!-- Warning prompt shown if NOT logged in -->
+          <div id="guestbook-auth-prompt" class="guestbook-auth-prompt">
+            <div class="prompt-icon"><i data-lucide="lock-keyhole"></i></div>
+            <h4>Authentication Required</h4>
+            <p>You must have an active session to publish a message on the board.</p>
+            <button id="guestbook-login-btn" class="btn btn-outline">
+              <span>Sign In / Register</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages stream -->
+        <div class="guestbook-messages-wrap glass-card">
+          <h3>Recent Messages</h3>
+          <div class="guestbook-stream" id="guestbook-stream-container">
+            <!-- Dynamic comments rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact-sec">
+    <div class="container">
+      <div class="section-tag-container">
+        <span class="section-tag">Contact</span>
+        <h2 class="section-heading">Get in Touch</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-details-col">
+          <h3>Let's collaborate on hardware or software</h3>
+          <p class="contact-info-desc">
+            Whether you want to talk about Laravel dashboards, stock app structures, battery grids, or video creation, drop a line! I will try to reply within 24 hours.
+          </p>
+
+          <div class="details-list">
+            <div class="details-item">
+              <div class="details-icon"><i data-lucide="mail"></i></div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:erisi@example.com">erisi@example.com</a>
+              </div>
+            </div>
+            <div class="details-item">
+              <div class="details-icon"><i data-lucide="map"></i></div>
+              <div>
+                <h4>Location</h4>
+                <p>Lipjan, Europe</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-col glass-card">
+          <form id="contact-form" class="contact-form">
+            <div class="form-row-2">
+              <div class="floating-input-group">
+                <input type="text" id="contact-name" placeholder=" " required>
+                <label for="contact-name">Full Name</label>
+              </div>
+              <div class="floating-input-group">
+                <input type="email" id="contact-email" placeholder=" " required>
+                <label for="contact-email">Email Address</label>
+              </div>
+            </div>
+            
+            <div class="floating-input-group">
+              <input type="text" id="contact-subject" placeholder=" " required>
+              <label for="contact-subject">Message Subject</label>
+            </div>
+
+            <div class="floating-input-group">
+              <textarea id="contact-msg" rows="5" placeholder=" " required></textarea>
+              <label for="contact-msg">Tell me about your idea...</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit-contact">
+              <span>Send Message</span>
+              <i data-lucide="send"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="copyright">&copy; 2026 Erisi. Student portfolio project.</p>
+        <p class="footer-stack">HTML · CSS · JavaScript · localStorage · deployed on <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel</a></p>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Web Work</a>
+        <a href="#lab">Tech Lab</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Unified Auth Modal (Login / Signup) -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal glass-card">
+      <button class="modal-close-btn" id="auth-modal-close" aria-label="Close modal"><i data-lucide="x"></i></button>
+      
+      <!-- Modal Navigation Tab -->
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tab-login-btn">Sign In</button>
+        <button class="auth-tab-btn" id="tab-signup-btn">Create Account</button>
+      </div>
+
+      <!-- Sign In Content Form -->
+      <div class="auth-form-view" id="login-view">
+        <div class="auth-modal-header">
+          <div class="auth-header-icon"><i data-lucide="key-round"></i></div>
+          <h2>Welcome Back</h2>
+          <p>Login to write messages on the guestbook and access dashboard features.</p>
+        </div>
+
+        <form id="login-form" class="auth-form">
+          <div class="floating-input-group">
+            <input type="text" id="login-username" placeholder=" " required autocomplete="username">
+            <label for="login-username">Username or Email</label>
+          </div>
+
+          <div class="floating-input-group floating-input-group--password">
+            <input type="password" id="login-password" placeholder=" " required autocomplete="current-password">
+            <label for="login-password">Password</label>
+            <button type="button" class="pw-toggle-btn" id="login-pw-toggle" aria-label="Show password"><i data-lucide="eye"></i></button>
+          </div>
+
+          <span class="auth-error-msg" id="login-error-msg" role="alert">Incorrect credentials. Try again.</span>
+          <button type="submit" class="btn btn-primary w-full">Sign In</button>
+        </form>
+      </div>
+
+      <!-- Sign Up Content Form -->
+      <div class="auth-form-view hidden" id="signup-view">
+        <div class="auth-modal-header">
+          <div class="auth-header-icon"><i data-lucide="user-plus"></i></div>
+          <h2>Create Account</h2>
+          <p>Sign up to register a new user locally on this website.</p>
+        </div>
+
+        <form id="signup-form" class="auth-form">
+          <div class="floating-input-group floating-input-group--hint">
+            <input type="text" id="signup-username" placeholder=" " required autocomplete="username">
+            <label for="signup-username">Username</label>
+            <small class="field-hint">Letters/numbers only, min 3 characters</small>
+          </div>
+
+          <div class="floating-input-group">
+            <input type="email" id="signup-email" placeholder=" " required autocomplete="email">
+            <label for="signup-email">Email Address</label>
+          </div>
+
+          <div class="floating-input-group floating-input-group--password floating-input-group--hint">
+            <input type="password" id="signup-password" placeholder=" " required autocomplete="new-password">
+            <label for="signup-password">Password</label>
+            <button type="button" class="pw-toggle-btn" id="signup-pw-toggle" aria-label="Show password"><i data-lucide="eye"></i></button>
+            <small class="field-hint">Min 4 characters</small>
+          </div>
+
+          <span class="auth-error-msg" id="signup-error-msg" role="alert">Username or email already registered.</span>
+          <button type="submit" class="btn btn-primary w-full">Sign Up & Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Manager Modal (Add/Edit) -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal glass-card modal-lg">
+      <button class="modal-close-btn" id="project-modal-close" aria-label="Close modal"><i data-lucide="x"></i></button>
+      
+      <div class="modal-header-desc">
+        <h2 id="project-modal-title">Add Showcase Item</h2>
+        <p>Register a new project into your Web portfolio or Engineering Tech Lab.</p>
+      </div>
+
+      <form id="project-form">
+        <input type="hidden" id="project-id-input">
+        
+        <div class="form-row-2">
+          <div class="floating-input-group">
+            <input type="text" id="project-title-input" placeholder=" " required>
+            <label for="project-title-input">Project Title</label>
+          </div>
+
+          <div class="select-input-group">
+            <label for="project-section-input" class="select-label">Portfolio Section</label>
+            <select id="project-section-input" required>
+              <option value="web" selected>Web Projects Hub</option>
+              <option value="lab">Engineering & Lab</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="floating-input-group">
+            <input type="text" id="project-tech-input" placeholder=" " required>
+            <label for="project-tech-input">Tech / Tools Used (comma separated)</label>
+          </div>
+
+          <div class="select-input-group">
+            <label for="project-category-input" class="select-label">Category Badge</label>
+            <select id="project-category-input" required>
+              <option value="Portal">Portal / Platform</option>
+              <option value="Catalog">Catalog / Stock</option>
+              <option value="Hardware">Hardware Build</option>
+              <option value="Clean Power">Clean Power</option>
+              <option value="Multimedia">Multimedia / Media</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="floating-input-group">
+            <input type="url" id="project-image-input" placeholder=" " required>
+            <label for="project-image-input">Project Showcase Image URL</label>
+          </div>
+          <div class="floating-input-group">
+            <input type="url" id="project-live-input" placeholder=" ">
+            <label for="project-live-input">Demo / Repository Link (Optional)</label>
+          </div>
+        </div>
+
+        <div class="floating-input-group">
+          <textarea id="project-description-input" rows="4" placeholder=" " required></textarea>
+          <label for="project-description-input">Project Description</label>
+        </div>
+
+        <div class="modal-actions-footer">
+          <button type="button" id="project-modal-cancel" class="btn btn-outline">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Showcase</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Windmill Output Simulator Modal -->
+  <div class="modal-overlay" id="windmill-modal">
+    <div class="modal glass-card modal-lg">
+      <button class="modal-close-btn" id="windmill-modal-close" aria-label="Close modal"><i data-lucide="x"></i></button>
+      
+      <div class="modal-header-desc">
+        <h2>Windmill Generator Output Simulator</h2>
+        <p>Adjust the slider to simulate wind speed and see estimated rotor speed, voltage, current, and power. This is a simplified classroom model—not real turbine data.</p>
+        <p class="sim-how-it-works"><strong>How it works:</strong> RPM scales with wind speed; voltage and current use simple multipliers; power = voltage × current. Above 22 m/s the demo “brake” trips and output drops to zero.</p>
+      </div>
+
+      <div class="simulator-grid">
+        <!-- Visual section: Spinning Windmill CSS -->
+        <div class="sim-visual-col">
+          <div class="windmill-visual-container">
+            <div class="windmill-pole"></div>
+            <div class="windmill-rotor" id="windmill-rotor">
+              <span class="windmill-blade blade-1"></span>
+              <span class="windmill-blade blade-2"></span>
+              <span class="windmill-blade blade-3"></span>
+            </div>
+            <div class="windmill-hub"></div>
+          </div>
+        </div>
+
+        <!-- Controls & metrics -->
+        <div class="sim-controls-col">
+          <div class="sim-slider-group">
+            <div class="slider-info">
+              <span class="slider-label">Wind Speed</span>
+              <span class="slider-value" id="wind-speed-val">8.0 m/s</span>
+            </div>
+            <input type="range" id="wind-speed-slider" min="0" max="25" step="0.5" value="8">
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-card glass-card">
+              <div class="metric-num" id="metric-rpm">480</div>
+              <div class="metric-lbl">Rotor RPM</div>
+            </div>
+            <div class="metric-card glass-card">
+              <div class="metric-num" id="metric-voltage">7.68 V</div>
+              <div class="metric-lbl">Voltage Generated</div>
+            </div>
+            <div class="metric-card glass-card">
+              <div class="metric-num" id="metric-current">3.20 A</div>
+              <div class="metric-lbl">Current Output</div>
+            </div>
+            <div class="metric-card glass-card">
+              <div class="metric-num" id="metric-power">24.58 W</div>
+              <div class="metric-lbl">Power Generated</div>
+            </div>
+          </div>
+
+          <!-- Alert/Info message block -->
+          <div class="sim-status-banner info" id="sim-status-banner">
+            <i data-lucide="info"></i>
+            <span id="sim-status-text">Generators operating in optimal wind speed levels.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <script src="https://unpkg.com/lucide@0.460.0"></script>
+  <script src="app.js"></script>
+</body>
+</html>
